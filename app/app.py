@@ -1,3 +1,7 @@
+"""
+This module contains the Flask application for a simple calculator.
+"""
+
 # app/app.py
 from flask import Flask, render_template, request
 from .calculadora import sumar, restar, multiplicar, dividir
@@ -7,6 +11,13 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
+    """
+    Renders the main page of the calculator application.
+
+    Handles GET requests by rendering the index.html template.
+    Handles POST requests by performing a calculation based on user input
+    and rendering the index.html template with the result.
+    """
     resultado = None
     if request.method == "POST":
         try:
@@ -33,4 +44,4 @@ def index():
 
 
 if __name__ == "__main__":  # pragma: no cover
-    app.run(debug=True, port=5000, host="0.0.0.0")  # Quita debug=True para producción
+    app.run(debug=True, port=5000, host="0.0.0.0")
